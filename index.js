@@ -5,7 +5,7 @@ import Parser from 'rss-parser'
 
 const ngProfileURL = 'https://goobieng.newgrounds.com/'
 const youtubeRssUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=UC-xSJRpIEmeNXj-em-psGtA'
-const saveDir = 'latest-posts'
+const saveDir = '/srv/site-scraper/latest-posts'
 let parser = new Parser()
 
 // --- GET THE ART ---
