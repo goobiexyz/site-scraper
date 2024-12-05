@@ -87,7 +87,7 @@ async function saveVidPost() {
     let vidPostData = {
         "title" : latestVid.title,
         "link"  : latestVid.link,
-        "imgSrc": "https://i.ytimg.com/vi/" + vidID + "/hqdefault.jpg"
+        "imgSrc": "https://i.ytimg.com/vi/" + vidID + "/maxresdefault.jpg"
     }
 
     await savePostData(vidPostData, "latest-vid.json")
