@@ -45,7 +45,7 @@ async function getImgSrc(url) {
     const $ = cheerio.load(body)
 
     // get the image src url
-    let imgSrc = $('.pod-body').find('img').first().attr('src')
+    let imgSrc = $('.art-images').find('img').first().attr('src')
 
     return imgSrc
 }
