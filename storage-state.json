@@ -1,0 +1,63 @@
+{
+  "cookies": [
+    {
+      "name": "_ngViCo-SupporterPromo",
+      "value": "%7B%22views%22%3A4%7D",
+      "domain": ".newgrounds.com",
+      "path": "/",
+      "expires": 1771774202.698952,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    },
+    {
+      "name": "XSRF-TOKEN",
+      "value": "eyJpdiI6IkY5N1dWVFphVjQwa1k5bFVzM3NuK2c9PSIsInZhbHVlIjoiVnRUdnYyUExBOERSL29lTytDRkRPdG1DSlY0amhLRnlidW44Nm16UHJKS3lMcVBwZGtCTktQRzBSdEYrcWJtQndVMVdudTJzUk50Uit3enNzb2FGbE9nT2dNR1NIZFNwWHhraCtHK3pIMVQzcW5DUkpwOVZsQ1orRGhrR3A1MTgiLCJtYWMiOiIzY2Q1NjIyZGM5MzQwMmExYjNiOTU0YjE3YTkxNWZhMDQ4NzFmZTFjYTAxYmZkZDdiMzU0MzcwYzhkMjY3YTQ0IiwidGFnIjoiIn0%3D",
+      "domain": ".newgrounds.com",
+      "path": "/",
+      "expires": 1771176602.699167,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "newgrounds_session",
+      "value": "eyJpdiI6IlpuekZYSk9RWWhadkFYQWxldFFXY0E9PSIsInZhbHVlIjoiWTZFT3AxV3lHTGdWd0cxWXZCeXczRHp2RFRyV0ttR0tGaU5Fa3BhN0crRlFCckNieDMwTEhia1llTDNLdThITjJua0I0NE9vQTZIMnVEZ0RMbVJiSXFrYit0YWgzRjJ0emNOMGQrOHpWd2NFaTdsYkxvYS8yTXZLcmlLMzNOaVIiLCJtYWMiOiJhNzczZTNhYjVjZTY4ZTFhMzMyNGQ0ODM4ODljMDFlZTRkMTQ2M2JlYjIwNDIxNjVmMzNiZDUyNTJlMDJlNDNmIiwidGFnIjoiIn0%3D",
+      "domain": ".newgrounds.com",
+      "path": "/",
+      "expires": 1771176602.699225,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "ng_user0",
+      "value": "pfMXs%2BBB8IhIBqdJ1%2BkvaoD%2F%2B%2FKItEJkBLTP3Y%2B0T5w%3D",
+      "domain": ".newgrounds.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": false,
+      "secure": true,
+      "sameSite": "None"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://www.newgrounds.com",
+      "localStorage": [
+        {
+          "name": "_ngPreferredFixedVideoPlayer_",
+          "value": "1"
+        },
+        {
+          "name": "_ngPreferredVideosize_",
+          "value": "\"large\""
+        },
+        {
+          "name": "_ngPreferredShowVideoTitles_",
+          "value": "null"
+        }
+      ]
+    }
+  ]
+}

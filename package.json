@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0",
+    "furaffinity-api": "^4.5.4",
     "node-fetch": "^3.3.2",
     "rss-parser": "^3.13.0"
   }
