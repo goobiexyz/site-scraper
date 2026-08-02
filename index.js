@@ -17,6 +17,25 @@ function buildFACookieHeader() {
     return `a=${FURAFFINITY_A_TOKEN}; b=${FURAFFINITY_B_TOKEN}`
 }
 
+function buildFABrowserHeaders(referer = 'https://www.furaffinity.net/') {
+    return {
+        cookie: buildFACookieHeader(),
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'accept-language': 'en-US,en;q=0.9',
+        'accept-encoding': 'gzip, deflate, br',
+        'cache-control': 'no-cache',
+        pragma: 'no-cache',
+        referer,
+        origin: 'https://www.furaffinity.net',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1'
+    }
+}
+
 function withTimeout(promise, timeoutMs, label) {
     return Promise.race([
         promise,
@@ -93,17 +112,29 @@ async function fetchFAGalleryPage(username, page = 1) {
     const url = `https://www.furaffinity.net/gallery/${username}/${page}/`
     const res = await withTimeout(
         fetch(url, {
-            headers: {
-                cookie: buildFACookieHeader(),
-                'user-agent': 'site-scraper/1.0 (+https://goobie.xyz)',
-                accept: 'text/html,application/xhtml+xml'
-            }
+            headers: buildFABrowserHeaders('https://www.furaffinity.net/')
         }),
         REQUEST_TIMEOUT_MS,
         `FA gallery fetch ${username}/${page}`
     )
 
     if (!res.ok) {
+        const body = await res.text()
+        const bodyPreview = body.replace(/\s+/g, ' ').trim().slice(0, 900)
+        const debugHeaders = {
+            server: res.headers.get('server') || '',
+            'content-type': res.headers.get('content-type') || '',
+            'cf-ray': res.headers.get('cf-ray') || '',
+            'cf-cache-status': res.headers.get('cf-cache-status') || '',
+            'x-frame-options': res.headers.get('x-frame-options') || '',
+            'set-cookie-present': Boolean(res.headers.get('set-cookie'))
+        }
+
+        logStep(
+            'saveArtPost:gallery-non-ok',
+            `status=${res.status} statusText=${res.statusText} headers=${JSON.stringify(debugHeaders)} bodyPreview=${JSON.stringify(bodyPreview)}`
+        )
+
         throw new Error(`FA gallery request failed: ${res.status}`)
     }
 
@@ -125,9 +156,7 @@ async function scrapeImageFromSubmissionPage(submissionUrl) {
 
     const res = await withTimeout(
         fetch(submissionUrl, {
-            headers: {
-                'user-agent': 'site-scraper/1.0 (+https://goobie.xyz)'
-            }
+            headers: buildFABrowserHeaders('https://www.furaffinity.net/')
         }),
         5000,
         `Submission page fetch ${submissionUrl}`
@@ -158,9 +187,7 @@ async function pickWorkingImageUrl(urls) {
             const headRes = await withTimeout(
                 fetch(url, {
                     method: 'HEAD',
-                    headers: {
-                        'user-agent': 'site-scraper/1.0 (+https://goobie.xyz)'
-                    }
+                    headers: buildFABrowserHeaders('https://www.furaffinity.net/')
                 }),
                 4000,
                 `HEAD ${url}`
@@ -175,7 +202,7 @@ async function pickWorkingImageUrl(urls) {
                 fetch(url, {
                     method: 'GET',
                     headers: {
-                        'user-agent': 'site-scraper/1.0 (+https://goobie.xyz)',
+                        ...buildFABrowserHeaders('https://www.furaffinity.net/'),
                         range: 'bytes=0-0'
                     }
                 }),
